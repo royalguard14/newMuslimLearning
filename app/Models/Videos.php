@@ -16,6 +16,7 @@ class Videos extends Model
         'description',
         'pdf_note',
         'type',
+        
                 
     ];
 }

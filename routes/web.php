@@ -38,12 +38,20 @@ Route::get('gkmngdgaepo/ip', function(){
 Route::group(['middleware' => 'accesspage'], function () {
 	Route::group(['middleware' => 'guest'], function () {
 
-		Route::get('/', ['as' => 'main.web', 'uses' => 'WebsiteController@index']);
+		Route::get('/', ['as' => 'web.home', 'uses' => 'WebsiteController@index']);
+		Route::get('/library', ['as' => 'web.library', 'uses' => 'WebsiteController@library']);
+		Route::get('/local-videos', ['as' => 'web.local', 'uses' => 'WebsiteController@local']);
+		Route::get('/fb-videos', ['as' => 'web.facebook', 'uses' => 'WebsiteController@facebook']);
+		Route::get('/yt-videos', ['as' => 'web.youtube', 'uses' => 'WebsiteController@youtube']);
+		Route::get('stream/{id?}',['as'=>'stream.show','uses'=>'WebsiteController@show']);
 
-	Route::get('stream/{id?}',['as'=>'stream.show','uses'=>'WebsiteController@show']);
-	#Route::get('/', 'Auth\AuthController@getLogin');
+
+
+
+
+	#Route::get('login', 'Auth\AuthController@getLogin');
 		Route::get('login', 'Auth\AuthController@getLogin')->name('getlogin');
-		Route::post('login', 'Auth\AuthController@postLogin');      
+		Route::post('/login', 'Auth\AuthController@postLogin');      
 		Route::get('reset_password.php',['as'=>'reset_password', 'uses'=>'ResetPasswordController@index'])->name('reset_password');
 		Route::post('reset_password/store.php',['as'=>'reset_password.store', 'uses'=>'ResetPasswordController@store']);
 	});
