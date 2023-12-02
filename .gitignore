@@ -2,6 +2,8 @@
 
 
 /vendor
+/public
+.env.example
 
 
 .phpunit.result.cache
