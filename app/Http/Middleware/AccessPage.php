@@ -22,7 +22,7 @@ class AccessPage
         
 
 
-
+/*
          $user_ip_address=$request->ip();
         
         date_default_timezone_set('Asia/Manila');
@@ -58,12 +58,12 @@ class AccessPage
       
 
 
-      } 
+      } */
 
 
             
 
-
+return $next($request);
 
 
 
