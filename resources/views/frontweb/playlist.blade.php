@@ -8,12 +8,12 @@
 </script>
 
 <!-- start of most watch -->
-<div class="small-header anim" style="--delay: .3s">Playlists</div>
+<div class="small-header anim" style="--delay: .1s">Playlists</div>
 
 
 
 <div class="videos">
-  <?php $x = 3; ?>
+  <?php $x = 1; ?>
   @foreach($playlists as $playlist)
   <?php $x++ ?>
   <!-- to loop -->
