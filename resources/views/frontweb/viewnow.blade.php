@@ -33,9 +33,7 @@ use App\Models\Videos
       <div class="video-content">
        <div class="video-p-wrapper anim" style="--delay: .1s">
         <div class="author-img__wrapper video-author video-p">
-         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check">
-          <path d="M20 6L9 17l-5-5" />
-        </svg>
+     
        
       </div>
       <div class="video-p-detail">
