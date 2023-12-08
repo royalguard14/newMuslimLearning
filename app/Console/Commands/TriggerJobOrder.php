@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\ScheduleJobOrder;
-use App\Models\ JobOrder;
+
 
 
 class TriggerJobOrder extends Command

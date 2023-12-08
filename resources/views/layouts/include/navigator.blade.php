@@ -12,6 +12,7 @@ $guard = Auth::user();
 $role = DB::table('role')->Where('id',$guard->role)->first();
 $ids = explode (",", $role->modules);
 $modules = DB::table('modules')->whereIn('id',$ids)->get();
+
 $accccc = [];
 foreach ($ids as $id) {
  $accccc[]= $id;}
@@ -22,13 +23,8 @@ foreach ($ids as $id) {
 $fmng = [5,6];            
 $fmngs = array_intersect($fmng, $accccc);
 
-
-$report = [];
-$reports = array_intersect($report, $accccc);
-
-$fm = [];
-$fms = array_intersect($fm, $accccc);
-
+$fmng1 = [8];            
+$fmngs1 = array_intersect($fmng1, $accccc);
 
 
 $admn = [1,2,4];
@@ -58,6 +54,37 @@ $admns = array_intersect($admn, $accccc);
 
 
 
+                 @if(count($fmngs1) > 0)
+                        <!-- Manage -->
+             
+                           <?php $filemngaccess = DB::table('modules')->whereIn('id',$fmngs1)->orderByRaw("field(id,".implode(',',$fmngs1).")")->get();
+                           $manage=DB::table('modules')->whereIn('id',$fmngs1)->pluck('default_url');
+                           ?>
+
+                        <li class="nav-item" >
+                          <a href="#" class="nav-link <?php echo (in_array($routeUri, json_decode($manage,true))) ? 'active' : '' ?> ">
+                            <i class="nav-icon fa fa-folder"></i>
+                              <p>Playlist</p>
+                                 <i class="right fas fa-angle-left"></i>
+                           </a>
+                           
+                        <ul class="nav nav-treeview">       
+                            @foreach($filemngaccess as $row)  
+                            <li class="nav-item {{ ( $routeUri == $row->routeUri) ? 'active' : ' ' }}" style="text-indent: 15px;">
+                                <a href="{{url($row->routeUri)}}" class="nav-link">
+                                  <i class="far fa-circle"></i>
+                                  <p>{{$row->module}}  </p>
+                                </a>
+                              </li>                    
+                          @endforeach
+
+                            </ul>
+
+                        </li>
+                 @endif
+
+
+                
                  @if(count($fmngs) > 0)
                         <!-- Manage -->
              
@@ -84,63 +111,6 @@ $admns = array_intersect($admn, $accccc);
 
                             </ul>
 
-                        </li>
-                 @endif
-
-
-                 @if(count($reports) > 0)
-                        <!-- Reports -->
-             
-                           <?php $reportaccess = DB::table('modules')->whereIn('id',$reports)->orderByRaw("field(id,".implode(',',$reports).")")->get(); 
-                           $reports=DB::table('modules')->whereIn('id',$reports)->pluck('default_url');
-                           ?>
-
-                        <li class="nav-item">
-                          <a href="#" class="nav-link <?php echo (in_array($routeUri, json_decode($reports,true))) ? 'active' : '' ?> ">
-                            <i class="nav-icon fa fa-line-chart fa-2x"></i>
-                              <p>Report</p>
-                                 <i class="right fas fa-angle-left"></i>
-                           </a>
-                           
-                        <ul class="nav nav-treeview">       
-                            @foreach($reportaccess as $row)  
-                            <li class="nav-item {{ ( $routeUri == $row->routeUri) ? 'active' : ' ' }}" style="text-indent: 15px;">
-                                <a href="{{url($row->routeUri)}}" class="nav-link">
-                                  <i class="far fa-circle"></i>
-                                  <p>{{$row->module}}  </p>
-                                </a>
-                              </li>                    
-                          @endforeach
-                            </ul>
-                        </li>
-                 @endif
-
-
-                  @if(count($fms) > 0)
-                        <!-- Maintainance -->
-             
-                            <?php $filemaccess = DB::table('modules')->whereIn('id',$fms)->orderByRaw("field(id,".implode(',',$fms).")")->get(); 
-                            $maintainance=DB::table('modules')->whereIn('id',$fms)->pluck('default_url');
-                            ?>
-
-
-                        <li class="nav-item">
-                          <a href="#" class="nav-link <?php echo (in_array($routeUri, json_decode($maintainance,true))) ? 'active' : '' ?> ">
-                            <i class="nav-icon fa fa-gears fa-2x"></i>
-                              <p>File Maintainance</p>
-                                 <i class="right fas fa-angle-left"></i>
-                           </a>
-                           
-                        <ul class="nav nav-treeview">       
-                            @foreach($filemaccess as $row)  
-                            <li class="nav-item {{ ( $routeUri == $row->routeUri) ? 'active' : ' ' }}" style="text-indent: 15px;">
-                                <a href="{{url($row->routeUri)}}" class="nav-link">
-                                  <i class="far fa-circle"></i>
-                                  <p>{{$row->module}}  </p>
-                                </a>
-                              </li>                    
-                          @endforeach
-                            </ul>
                         </li>
                  @endif
 

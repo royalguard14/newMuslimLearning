@@ -19,4 +19,10 @@ class Videos extends Model
         
                 
     ];
+
+
+   public function playlists()
+    {
+        return $this->belongsToMany(Playlist::class, 'playlist_video', 'video_id', 'playlist_id');
+    }
 }

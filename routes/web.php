@@ -69,6 +69,20 @@ Route::group(['middleware' => 'accesspage'], function () {
 		Route::resource('users','UserController');
 		Route::resource('video','VideoController');
 		Route::resource('videoe','VideoeController');
+		Route::resource('playlist','PlaylistController');
+
+
+
+		Route::get('playlist/show/{id?}',['as'=>'playlist.show','uses'=>'PlaylistController@show']);
+
+		Route::post('/playlist/{playlistId}/addVideo', [PlaylistController::class, 'addVideoToPlaylist'])->name('playlist.addVideo');
+Route::delete('/playlist/{playlistId}/deleteVideo', [PlaylistController::class, 'deleteVideoFromPlaylist'])->name('playlist.deleteVideo');
+
+
+
+
+
+		
 
 		Route::get('video/edit/{id?}',['as'=>'video.show','uses'=>'VideoController@show']);
 		Route::post('video/del',['as'=>'video.destroy','uses'=>'VideoController@destroy']);

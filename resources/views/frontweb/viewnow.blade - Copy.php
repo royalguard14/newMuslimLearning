@@ -39,7 +39,7 @@ use App\Models\Videos
         <img class="author-img" src="https://images.pexels.com/photos/1680172/pexels-photo-1680172.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" />
       </div>
       <div class="video-p-detail">
-       <div class="video-p-name">Andy William</div>
+       <div class="video-p-name">New Muslim Library</div>
        <div class="video-p-sub">1,980,893 subscribers</div>
      </div>
      <div class="button-wrapper">

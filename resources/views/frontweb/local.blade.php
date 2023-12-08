@@ -38,7 +38,7 @@ window.onload = function() {
       <img class="author-img" src="https://images.pexels.com/photos/1680172/pexels-photo-1680172.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" />
     </div>
   </div>
-  <div class="video-by">Andy William</div>
+  <div class="video-by">New Muslim Library</div>
   <div class="video-name" onclick="window.location.href = '{{ route('stream.show', ['id' => $row['id']]) }}'">{{ $row['video_name'] }}</div>
   <div class="video-view">{{ $row['views'] }} views<span class="seperate video-seperate"></span>{{ $row['created_at']->diffForHumans() }}</div>
 </div>
