@@ -28,10 +28,9 @@
 
   </div>
 </div>
-<div class="video-by">New Muslim Library</div>
+
 <div class="video-name" onclick="window.location.href = '{{ route('playlist.videos', ['id' => $playlist->id]) }}'">{{ $playlist->name }}</div>
-<div class="video-view">•<span class="seperate video-seperate"></span>{{ $playlist->created_at
-  ->diffForHumans() }}</div>
+
 </div>
 <!-- end loop -->
 @endforeach
