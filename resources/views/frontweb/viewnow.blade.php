@@ -71,11 +71,11 @@ foreach ($paragraphs as $index => $paragraph) {
     <?php $x++ ?>
     <div class="chat-vid anim" style="--delay: .<?php echo $x ?>s"    onclick="window.location.href = '{{ route('stream.show', ['id' => $ranvids->id]) }}'">
      <div class="chat-vid__wrapper">
-      <img class="chat-vid__img" src="{{asset('vid_assest/1200px-YouTube_Diamond_Play_Butt.jpg')}}" />
+    
       <div class="chat-vid__content">
        <div class="chat-vid__name" onclick="window.location.href = '{{ route('stream.show', ['id' => $ranvids->id]) }}'" >{{$ranvids->video_name}}</div>
        <!--  <div class="chat-vid__by">Jordan Wise</div> -->
-       <div class="chat-vid__info">{{$ranvids->views}} views <span class="seperate"></span>{{ $ranvids->created_at->diffForHumans() }}</div>
+ 
      </div>
    </div>
  </div>
