@@ -80,7 +80,7 @@ foreach ($paragraphs as $index => $paragraph) {
    </div>
  </div>
  @endforeach
- <div class="chat-vid__button anim" style="--delay: .<?php echo $x+1 ?>s" onclick="window.location.href ='{{route('web.library')}}'">See All videos ({{Videos::count()}})</div>
+ <div class="chat-vid__button anim" style="--delay: .<?php echo $x+1 ?>s" onclick="window.location.href ='{{route('web.playlist')}}'">See All videos ({{Videos::count()}})</div>
 </div><!-- end -->
 </div>
 </div>
