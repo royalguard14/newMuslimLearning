@@ -38,7 +38,7 @@ Route::get('gkmngdgaepo/ip', function(){
 Route::group(['middleware' => 'accesspage'], function () {
 	Route::group(['middleware' => 'guest'], function () {
 
-		Route::get('/', ['as' => 'web.home', 'uses' => 'WebsiteController@index']);
+		Route::get('/', ['as' => 'web.home', 'uses' => 'WebsiteController@playlist']);
 		Route::get('/library', ['as' => 'web.library', 'uses' => 'WebsiteController@library']);
 		Route::get('/local-videos', ['as' => 'web.local', 'uses' => 'WebsiteController@local']);
 		Route::get('/fb-videos', ['as' => 'web.facebook', 'uses' => 'WebsiteController@facebook']);
