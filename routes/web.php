@@ -45,6 +45,8 @@ Route::group(['middleware' => 'accesspage'], function () {
 		Route::get('/yt-videos', ['as' => 'web.youtube', 'uses' => 'WebsiteController@youtube']);
 		Route::get('stream/{id?}',['as'=>'stream.show','uses'=>'WebsiteController@show']);
 
+		Route::get('/pl', ['as' => 'web.playlist', 'uses' => 'WebsiteController@playlist']);
+		Route::get('pl/{id}', 'WebsiteController@showPlaylistVideos')->name('playlist.videos');
 
 
 

@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use App\Models\Videos;
 use App\Models\VideoDetails;
 use App\Models\VideoChat;
+use App\Models\Playlist;
 use Illuminate\Http\Request;
 use DB;
 class WebsiteController extends Controller
@@ -124,50 +125,50 @@ public function library(){
   ->orderBy('video_details.views', 'desc')
   ->get();
 
- $video_salang = [];
-      foreach ($videos as $video) {
-        $html = $video->video_path;
-        $pattern = '/<iframe[^>]+src="([^"]+)"/';
+  $video_salang = [];
+  foreach ($videos as $video) {
+    $html = $video->video_path;
+    $pattern = '/<iframe[^>]+src="([^"]+)"/';
 
-        if ($video->type == "local") {
-         $video_salang[] = [
-          'id' => $video->id,
-          'type' => 'local',
-          'video_name' => $video->video_name,
-          'created_at' => $video->created_at,
-          'video_path' => $video->video_path, 
-          'views' => $video->views
-        ];
-      }else{
- 
-      
-        preg_match($pattern, $html, $matches);
-        if (isset($matches[1])) {
-          $srcValue = $matches[1];
-          $video_salang[] = [
-            'id' => $video->id,
-            'type' => 'youtube',
-            'video_name' => $video->video_name,
-            'created_at' => $video->created_at,
-            'video_path' => 'https://www.youtube.com/embed/' . basename(parse_url($srcValue, PHP_URL_PATH)),
-            'views' => $video->views
-          ];
-        }else{
-          $video_salang[] = [
-            'id' => $video->id,
-            'type' => 'facebook',
-            'video_name' => $video->video_name,
-            'created_at' => $video->created_at,
-            'video_path' => $html,
-            'views' => $video->views
-          ];
-        }
-      }
+    if ($video->type == "local") {
+     $video_salang[] = [
+      'id' => $video->id,
+      'type' => 'local',
+      'video_name' => $video->video_name,
+      'created_at' => $video->created_at,
+      'video_path' => $video->video_path, 
+      'views' => $video->views
+    ];
+  }else{
+
+
+    preg_match($pattern, $html, $matches);
+    if (isset($matches[1])) {
+      $srcValue = $matches[1];
+      $video_salang[] = [
+        'id' => $video->id,
+        'type' => 'youtube',
+        'video_name' => $video->video_name,
+        'created_at' => $video->created_at,
+        'video_path' => 'https://www.youtube.com/embed/' . basename(parse_url($srcValue, PHP_URL_PATH)),
+        'views' => $video->views
+      ];
+    }else{
+      $video_salang[] = [
+        'id' => $video->id,
+        'type' => 'facebook',
+        'video_name' => $video->video_name,
+        'created_at' => $video->created_at,
+        'video_path' => $html,
+        'views' => $video->views
+      ];
     }
-
-
-    return view('frontweb.library',compact('video_salang'));
   }
+}
+
+
+return view('frontweb.library',compact('video_salang'));
+}
     /**
      * Show the form for creating a new resource.
      *
@@ -195,9 +196,9 @@ public function library(){
      */
     public function show($id)
     {
- 
 
-$randdom =Videos::join('video_details', 'video_library.id', '=', 'video_details.vidlib_id')
+
+      $randdom =Videos::join('video_details', 'video_library.id', '=', 'video_details.vidlib_id')
       ->select('video_library.id', 'video_library.video_name', 'video_library.created_at', 'video_details.views')
       ->inRandomOrder()
       ->limit(5)
@@ -205,58 +206,58 @@ $randdom =Videos::join('video_details', 'video_library.id', '=', 'video_details.
 
 
 
-    $playy = [];
+      $playy = [];
         //to play,
-    $playvid = Videos::where('id', $id)
-    ->select('id','type', 'video_name', 'video_path','description', 'created_at','pdf_note')
-    ->first();
-    if ($playvid->type == "local") {
-     $playy[] = [
-      'type'  => 'local',
-      'pdf_note' => $playvid->pdf_note,
-      'description' => $playvid->description,
-      'video_name' => $playvid->video_name,
-      'created_at' => $playvid->created_at,
-      'video_path' => $playvid->video_path,
-    ];
-  }else{
-    $html = $playvid->video_path;
-    $pattern = '/<iframe[^>]+src="([^"]+)"/';
-    preg_match($pattern, $html, $matches);
-    if (isset($matches[1])) {
-      $srcValue = $matches[1];
-      $playy[] = [
-        'type'  => 'youtube',
+      $playvid = Videos::where('id', $id)
+      ->select('id','type', 'video_name', 'video_path','description', 'created_at','pdf_note')
+      ->first();
+      if ($playvid->type == "local") {
+       $playy[] = [
+        'type'  => 'local',
         'pdf_note' => $playvid->pdf_note,
         'description' => $playvid->description,
         'video_name' => $playvid->video_name,
         'created_at' => $playvid->created_at,
-        'src' => 'https://www.youtube.com/embed/' . basename(parse_url($srcValue, PHP_URL_PATH)),
+        'video_path' => $playvid->video_path,
       ];
     }else{
-      $playy[] = [
-        'type'  => 'facebook',
-        'pdf_note' => $playvid->pdf_note,
-        'description' => $playvid->description,
-        'video_name' => $playvid->video_name,
-        'created_at' => $playvid->created_at,
-        'src' => $playvid->video_path,
-      ];
+      $html = $playvid->video_path;
+      $pattern = '/<iframe[^>]+src="([^"]+)"/';
+      preg_match($pattern, $html, $matches);
+      if (isset($matches[1])) {
+        $srcValue = $matches[1];
+        $playy[] = [
+          'type'  => 'youtube',
+          'pdf_note' => $playvid->pdf_note,
+          'description' => $playvid->description,
+          'video_name' => $playvid->video_name,
+          'created_at' => $playvid->created_at,
+          'src' => 'https://www.youtube.com/embed/' . basename(parse_url($srcValue, PHP_URL_PATH)),
+        ];
+      }else{
+        $playy[] = [
+          'type'  => 'facebook',
+          'pdf_note' => $playvid->pdf_note,
+          'description' => $playvid->description,
+          'video_name' => $playvid->video_name,
+          'created_at' => $playvid->created_at,
+          'src' => $playvid->video_path,
+        ];
+      }
     }
-  }
 //update views after click,
-  $vidviews = VideoDetails::where('vidlib_id', $id)
-  ->select('views')
-  ->first();
-  /*dd($playy);*/
+    $vidviews = VideoDetails::where('vidlib_id', $id)
+    ->select('views')
+    ->first();
+    /*dd($playy);*/
 
 
 
-$videoChats = VideoChat::where('video_id', $id)->get();
+    $videoChats = VideoChat::where('video_id', $id)->get();
 
 
-  return view('frontweb.viewnow', compact('playy','vidviews','id','randdom','videoChats'));
-}
+    return view('frontweb.viewnow', compact('playy','vidviews','id','randdom','videoChats'));
+  }
     /**
      * Show the form for editing the specified resource.
      *
@@ -288,4 +289,23 @@ $videoChats = VideoChat::where('video_id', $id)->get();
     {
         //
     }
+
+    public function playlist()
+    {
+
+     $playlists = Playlist::all();
+     return view('frontweb.playlist', compact('playlists'));
+   }
+
+
+   public function showPlaylistVideos($id)
+   {
+    $playlists = Playlist::findOrFail($id);
+    $videos = $playlists->videos;
+
+
+    return view('frontweb.playlist_show', compact('playlists','videos'));
   }
+
+
+}

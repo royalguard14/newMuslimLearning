@@ -15,8 +15,30 @@ use App\Models\VideoDetails;
 <head>
   <meta charset="UTF-8">
   <title>New Muslim Library</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel='stylesheet' href='https://vjs.zencdn.net/5-unsafe/video-js.css'><link rel="stylesheet" href="{{asset('vid_assest/style.css')}}">
+
+
+    <style>
+    /* CSS for mobile devices */
+    @media only screen and (max-width: 768px) {
+      /* Define your mobile-specific styles here */
+      /* For example, modify sidebar or container width */
+      .sidebar {
+        width: 100%;
+        /* Other adjustments as needed */
+      }
+      .wrapper {
+        width: 100%;
+        /* Other adjustments as needed */
+      }
+      /* ... other mobile styles ... */
+    }
+  </style>
+
+
 </head>
 <body >
   <div id="fb-root"></div>
@@ -42,7 +64,7 @@ use App\Models\VideoDetails;
     Library
   </a>
 
-      <a class="sidebar-link library" href="{{route('web.library')}}">
+      <a class="sidebar-link library" href="{{route('web.playlist')}}">
   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M20 7H4V5H20V7ZM20 11H4V9H20V11ZM4 15H16V13H4V15ZM22 17V3C22 2.44772 21.5523 2 21 2H3C2.44772 2 2 2.44772 2 3V21L5.34919 18.1587C5.5977 17.9309 5.89856 17.7735 6.21968 17.707C6.54079 17.6405 6.8756 17.6671 7.18934 17.7846C7.50309 17.9022 7.78649 18.1068 7.99957 18.377L11.577 22H21C21.5523 22 22 21.5523 22 21V17Z" fill="currentColor"/>
 </svg>

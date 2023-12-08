@@ -17,30 +17,30 @@
  </div>
 </div> <!-- end top 2 fe-->
 <!-- start of most watch -->
-<div class="small-header anim" style="--delay: .3s">Playlists</div>
+<div class="small-header anim" style="--delay: .3s">{{$playlists->name}}</div>
 
 
 
 <div class="videos">
   <?php $x = 3; ?>
-  @foreach($playlists as $playlist)
+  @foreach($videos as $row) 
   <?php $x++ ?>
   <!-- to loop -->
- <div class="video anim" style="--delay: .<?php echo $x ?>s" onclick="window.location.href = '{{ route('playlist.videos', ['id' => $playlist->id]) }}'">
+ <div class="video anim" style="--delay: .<?php echo $x ?>s" onclick="window.location.href = '{{ route('stream.show', ['id' => $row['id']]) }}'">
    <div class="video-time"></div>
    <div class="video-wrapper">
-    <img src="playlist.png" style="background-color: rgba(0, 0, 255, 0.5);" />
+    <div class="fb-video" data-href="{{ $row['video_path'] }} "  
+    data-allowfullscreen="true" data-width="650"></div>
     <div class="author-img__wrapper video-author">
      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check">
       <path d="M20 6L9 17l-5-5" />
     </svg>
-
+    <img class="author-img" src="https://images.pexels.com/photos/1680172/pexels-photo-1680172.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" />
   </div>
 </div>
 <div class="video-by">New Muslim Library</div>
-<div class="video-name" onclick="window.location.href = '{{ route('playlist.videos', ['id' => $playlist->id]) }}'">{{ $playlist->name }}</div>
-<div class="video-view">•<span class="seperate video-seperate"></span>{{ $playlist->created_at
-  ->diffForHumans() }}</div>
+<div class="video-name" onclick="window.location.href = '{{ route('stream.show', ['id' => $row['id']]) }}'">{{ $row['video_name'] }}</div>
+<div class="video-view">{{ $row['views'] }} views<span class="seperate video-seperate"></span>{{ $row['created_at']->diffForHumans() }}</div>
 </div>
 <!-- end loop -->
 @endforeach
