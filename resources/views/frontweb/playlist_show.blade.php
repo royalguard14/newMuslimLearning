@@ -6,16 +6,7 @@
     $(".facebook").addClass("is-active");
   };
 </script>
-<div class="main-header anim" style="--delay: 0s">Discover</div>
-<!-- top 2 fe-->
-<div class="main-blogs">
-  <div class="main-blog anim" style="--delay: .1s">
-   <div class="main-blog__title">Quran</div>
- </div>
- <div class="main-blog anim" style="--delay: .2s">
-   <div class="main-blog__title">Mosques & Center</div>
- </div>
-</div> <!-- end top 2 fe-->
+
 <!-- start of most watch -->
 <div class="small-header anim" style="--delay: .3s">{{$playlists->name}}</div>
 
