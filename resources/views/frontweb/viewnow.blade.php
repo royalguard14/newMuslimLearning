@@ -73,7 +73,7 @@ foreach ($paragraphs as $index => $paragraph) {
      <div class="chat-vid__wrapper">
     
       <div class="chat-vid__content">
-       <div class="chat-vid__name" onclick="window.location.href = '{{ route('stream.show', ['id' => $ranvids->id]) }}'" >{{$ranvids->video_name}}</div>
+       <div class="chat-vid__name" onclick="window.location.href = '{{ route('stream.show', ['id' => $ranvids->id]) }}'" > • {{$ranvids->video_name}}</div>
        <!--  <div class="chat-vid__by">Jordan Wise</div> -->
  
      </div>
