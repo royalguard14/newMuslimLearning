@@ -37,8 +37,7 @@ use App\Models\Videos
        
       </div>
       <div class="video-p-detail">
-       <div class="video-p-name"> </div>
-       <div class="video-p-sub"> </div>
+ <div class="video-p-title anim" style="--delay: .2s">{{$playy[0]['video_name']}}</div>
      </div>
      <div class="button-wrapper">
        <button class="like">
@@ -50,7 +49,7 @@ use App\Models\Videos
 
  </div>
 </div>
-<div class="video-p-title anim" style="--delay: .2s">{{$playy[0]['video_name']}}</div>
+
 <?php 
 $string = $playy[0]['description'];
 $paragraphs = explode("\n\n", $string);
