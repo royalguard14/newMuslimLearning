@@ -5,6 +5,7 @@
 /public
 .env.example
 .env
+storage/logs/
 
 
 .phpunit.result.cache

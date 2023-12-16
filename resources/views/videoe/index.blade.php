@@ -99,18 +99,32 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Edit Title</h4>
+        <h4 class="modal-title">Edit Video</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
+
+
+       <form enctype="multipart/form-data" action="{{ route('videoe.edit') }}" method="POST">
+        
+        @csrf
         <!-- Video Title input -->
         <input type="hidden" name="ids" id="ids">
         <div class="form-group">
           <label for="elink">Embed full link</label>
           <textarea class="form-control" id="elink" name="elink" rows="5" placeholder="Enter video description"></textarea>
         </div>
+        <div class="form-group">
+          <label for="pdfUpload">Select PDF File (Optional)</label>
+          <input type="file" class="form-control-file" name="pdfUpload" accept=".pdf">
+          <!-- Display the current PDF file info -->
+          <p id="pdfInfo"></p>
+        </div>
+
+
+
         <div class="form-group">
           <label for="videoTitle">Video Title</label>
           <input type="text" class="form-control" name="videoTitle"  id="videoTitle" placeholder="Enter video title">
@@ -122,12 +136,17 @@
         </div>
       </div>
       <div class="modal-footer justify-content-between">
-        <button class="btn btn-block  btn-lg btn-success" id="editNow">Save</button>
+        <button class="btn btn-block  btn-lg btn-success" >Save</button>
       </div>
-    </div>
-    <!-- /.modal-content -->
+
+    </form>
+
+
+
   </div>
-  <!-- /.modal-dialog -->
+  <!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
 </div>
 @endsection
 @section('extra_head')
@@ -192,14 +211,26 @@
     url: "{{ route('videoe.show', '') }}" + "/" + x,
     type:"GET",
     data: {id:x},
-    success: function(data){            
+    success: function(data){      
       $('#editModal').modal('show');
       $('#ids').val(data.video.id);
       $('#videoTitle').val(data.video.video_name);
       $('#videoDescription').val(data.video.description);
       $('#elink').val(data.video.video_path);
-    }    
-  });
+
+
+
+      var pdfNote = data.video.pdf_note;
+
+      if (pdfNote) {
+        var fileName = pdfNote.split('/').pop();
+        $('#pdfInfo').text('Current PDF File: ' + fileName);
+      } else {
+  $('#pdfInfo').hide(); // Hide the #pdfInfo element if pdfNote is null or empty
+}
+
+}    
+});
  }
 </script>
 <script type="text/javascript">
@@ -223,4 +254,6 @@
     });
   });
 </script>
+
+
 @endsection

@@ -315,6 +315,20 @@ body:before {
   overflow: auto;
 }
 
+
+/* New CSS for mobile */
+@media only screen and (max-width: 768px) {
+  .bottom-elements {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 999; /* Ensure the elements are above the scrolling content */
+    /* Other necessary styles */
+  }
+}
+
+
+
 .anim {
   -webkit-animation: bottom 0.8s var(--delay) both;
           animation: bottom 0.8s var(--delay) both;

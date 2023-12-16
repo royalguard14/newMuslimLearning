@@ -16,38 +16,21 @@ use App\Models\VideoDetails;
   <meta charset="UTF-8">
   <title>New Muslim Library</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link rel='stylesheet' href='https://vjs.zencdn.net/5-unsafe/video-js.css'><link rel="stylesheet" href="{{asset('vid_assest/style.css')}}">
-
-
-  <style>
-    /* CSS for mobile devices */
-    @media only screen and (max-width: 768px) {
-      /* Define your mobile-specific styles here */
-      /* For example, modify sidebar or container width */
-      .sidebar {
-        width: 100%;
-        /* Other adjustments as needed */
-      }
-      .wrapper {
-        width: 100%;
-        /* Other adjustments as needed */
-      }
-      /* ... other mobile styles ... */
-    }
-  </style>
-
-
+  <link rel='stylesheet' href='https://vjs.zencdn.net/5-unsafe/video-js.css'>
+  <link rel="stylesheet" href="{{asset('vid_assest/style.css')}}">
 </head>
 <body >
   <div id="fb-root"></div>
   <script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>
   <!-- partial:index.partial.html -->
   <div class="container">
+
+
+
    <div class="sidebar">
     <span class="logo">S</span>
-    <a class="logo-expand" href="{{route('web.playlist')}}"><img src="logo.png" alt="YouTube Logo" class="youtube-logo"  /></a>
+    <a class="logo-expand" href="{{route('web.playlist')}}"><img src="{{asset('logo.png')}}" alt="YouTube Logo" class="youtube-logo"  /></a>
     <div class="side-wrapper">
      <div class="side-title">MENU</div>
      <div class="side-menu">
@@ -57,10 +40,14 @@ use App\Models\VideoDetails;
       </svg>
       Discover
     </a>
-  </div>
+  </div> 
+</div> 
 </div>
 
-</div><!-- end of sidebar -->
+
+
+
+
 
 <div class="wrapper">
   <div class="header">
@@ -68,11 +55,14 @@ use App\Models\VideoDetails;
     <input type="text" placeholder="Search">
   </div>
 </div>
-<div class="main-container">
+<div class="main-container ">
   @yield('body')
 </div>
 </div>
-</div>
+
+
+</div> <!-- end of container -->
+
 <!-- partial -->
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src='https://vjs.zencdn.net/5-unsafe/video.js'></script><script  src="{{asset('vid_assest/script.js')}}"></script>
