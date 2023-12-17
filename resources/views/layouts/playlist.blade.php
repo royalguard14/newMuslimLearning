@@ -110,9 +110,9 @@ use App\Models\VideoDetails;
     </div>
   </div>
 </div>
-<footer>
+<!-- <footer>
   <p>&copy; ZearDeveloper 2023</p>
-</footer>
+</footer> -->
 <!-- Bootstrap JS (if needed) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
