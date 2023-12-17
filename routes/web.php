@@ -35,36 +35,36 @@ Route::get('gkmngdgaepo/ip', function(){
 });
 
 
-Route::get('/update_pdf', function () {
-    $public_path = storage_path();
-    $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+// Route::get('/update_pdf', function () {
+//     $public_path = storage_path();
+//     $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-    // Get all data from the VideoLibrary model
-    $videoLibraries = Videos::all();
+//     // Get all data from the VideoLibrary model
+//     $videoLibraries = Videos::all();
 
-    foreach ($videoLibraries as $videoLibrary) {
-        $randomu = substr(str_shuffle($permitted_chars), 0, 6);
-        $pdfName = 'blank.pdf';
-        $pdfPath = '/app/public/uploads/footnotes/' . $randomu . '/' . $pdfName;
-        $destinationPath = $public_path . '/app/public/uploads/footnotes/' . $randomu;
+//     foreach ($videoLibraries as $videoLibrary) {
+//         $randomu = substr(str_shuffle($permitted_chars), 0, 6);
+//         $pdfName = 'blank.pdf';
+//         $pdfPath = '/app/public/uploads/footnotes/' . $randomu . '/' . $pdfName;
+//         $destinationPath = $public_path . '/app/public/uploads/footnotes/' . $randomu;
 
-        if (!is_dir($destinationPath)) {
-            mkdir($destinationPath, 0755, true);
-        }
+//         if (!is_dir($destinationPath)) {
+//             mkdir($destinationPath, 0755, true);
+//         }
 
-        if (!file_exists($destinationPath . '/' . $pdfName)) {
-            file_put_contents($destinationPath . '/' . $pdfName, '');
-        }
+//         if (!file_exists($destinationPath . '/' . $pdfName)) {
+//             file_put_contents($destinationPath . '/' . $pdfName, '');
+//         }
 
-        $pdf_path = $pdfPath;
+//         $pdf_path = $pdfPath;
         
-        // Update the pdf_note field for each entry
-        $videoLibrary->pdf_note = $pdf_path;
-        $videoLibrary->save();
-    }
+//         // Update the pdf_note field for each entry
+//         $videoLibrary->pdf_note = $pdf_path;
+//         $videoLibrary->save();
+//     }
 
-    return dd($randomu);
-});
+//     return dd($randomu);
+// });
 
 Route::group(['middleware' => 'accesspage'], function () {
 	Route::group(['middleware' => 'guest'], function () {

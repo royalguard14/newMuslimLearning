@@ -598,14 +598,18 @@ video {
 }
 
 .stream-area {
-  /*display: none;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Adjust height as needed */
+
 }
 @media screen and (max-width: 940px) {
   .stream-area {
     flex-direction: column;
   }
   .stream-area .video-stream {
-    width: 100%;
+    width: 10%;
   }
   .stream-area .chat-stream {
     margin-left: 0;
@@ -618,6 +622,7 @@ video {
     max-width: 100%;
   }
 }
+
 
 .show .stream-area {
   display: flex;
