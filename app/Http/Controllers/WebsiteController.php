@@ -15,50 +15,8 @@ class WebsiteController extends Controller
      */
     public function index()
     {
-//all video base on views
-      $videos = Videos::join('video_details', 'video_library.id', '=', 'video_details.vidlib_id')
-      ->select('video_library.id', 'video_library.video_name', 'video_library.video_path', 'video_library.created_at', 'video_details.views','video_library.type')
-      ->orderBy('video_details.views', 'desc')
-      ->take(5)
-      ->get();
-      $video_salang = [];
-      foreach ($videos as $video) {
-        if ($video -> type == "local") {
-         $video_salang[] = [
-          'id' => $video->id,
-          'type' => 'local',
-          'video_name' => $video->video_name,
-          'created_at' => $video->created_at,
-          'video_path' => $video->video_path, 
-          'views' => $video->views
-        ];
-      }else{
-        $html = $video->video_path;
-        $pattern = '/<iframe[^>]+src="([^"]+)"/';
-        preg_match($pattern, $html, $matches);
-        if (isset($matches[1])) {
-          $srcValue = $matches[1];
-          $video_salang[] = [
-            'id' => $video->id,
-            'type' => 'youtube',
-            'video_name' => $video->video_name,
-            'created_at' => $video->created_at,
-            'video_path' => 'https://www.youtube.com/embed/' . basename(parse_url($srcValue, PHP_URL_PATH)),
-            'views' => $video->views
-          ];
-        }else{
-          $video_salang[] = [
-            'id' => $video->id,
-            'type' => 'facebook',
-            'video_name' => $video->video_name,
-            'created_at' => $video->created_at,
-            'video_path' => $html,
-            'views' => $video->views
-          ];
-        }
-      }
-    }
-    return view('frontweb.index',compact('video_salang'));
+$playlists = Playlist::all();
+    return view('frontweb.index',compact('playlists'));
   }
   public function local(){
    $videos = Videos::join('video_details', 'video_library.id', '=', 'video_details.vidlib_id')

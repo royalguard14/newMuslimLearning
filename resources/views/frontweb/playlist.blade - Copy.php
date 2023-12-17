@@ -1,6 +1,11 @@
 @extends('layouts.frontweb')
 @section('body')
-
+<script type="text/javascript">
+  window.onload = function() {
+    $(".sidebar-link").removeClass("is-active");
+    $(".facebook").addClass("is-active");
+  };
+</script>
 
 <!-- start of most watch -->
 <div class="small-header anim" style="--delay: .1s">Playlists</div>

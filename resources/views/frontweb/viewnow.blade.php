@@ -3,11 +3,20 @@
 <head>
   <title>New Muslim Library</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" >
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <style type="text/css">
+     body {
+      background-color: #363636;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      padding-bottom: 30px; 
+    }
     p.no-margin {
       margin: 0;
     }
@@ -32,9 +41,40 @@
      font-size: 14px;
      cursor: pointer;
    }
+
+
+       header {
+      background-color: #363636;
+      padding: 10px 0;
+      text-align: center;
+      color: #ffffff;
+    }
+    header img {
+      max-width: 100%; /* Ensures the image fits within its container */
+      height: auto;
+    }
+    /* Smaller logo size for mobile */
+    @media (max-width: 768px) {
+      header img {
+        max-width: 150px; /* Adjust the maximum width for smaller screens */
+      }
+    }
+    /* Footer styles */
+    footer {
+      background-color: #02999f;
+      padding: 10px 0;
+      text-align: center;
+      color: #ffffff;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
  </style>
 </head>
 <body>
+    <header>
+    <img src="{{asset('logo.png')}}" alt="Logo"> <!-- Replace 'logo.png' with the path to your logo image -->
+  </header>
   <div id="fb-root"></div>
   <script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>
   <div class="container" style="margin-top: 10px; margin-bottom: 10px">
@@ -83,5 +123,9 @@
       downloadLink.click();
     }
   </script>
+  <footer>
+  <p>&copy; ZearDeveloper 2023</p>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
