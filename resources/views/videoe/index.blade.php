@@ -114,7 +114,7 @@
         <input type="hidden" name="ids" id="ids">
         <div class="form-group">
           <label for="elink">Embed full link</label>
-          <textarea class="form-control" id="elink" name="elink" rows="5" placeholder="Enter video description"></textarea>
+          <textarea class="form-control" id="elink" name="elink" rows="5" placeholder="Enter video link"></textarea>
         </div>
         <div class="form-group">
           <label for="pdfUpload">Select PDF File (Optional)</label>
@@ -131,8 +131,8 @@
         </div>
         <!-- Video Description textarea -->
         <div class="form-group">
-          <label for="videoDescription">Video Description</label>
-          <textarea class="form-control" id="videoDescription" name="videoDescriptions" rows="5" placeholder="Enter video description"></textarea>
+          <label for="videoDescriptions">Video Description</label>
+          <textarea class="form-control" id="videoDescriptions" name="videoDescriptions" rows="5" placeholder="Enter video description"></textarea>
         </div>
       </div>
       <div class="modal-footer justify-content-between">
@@ -215,7 +215,7 @@
       $('#editModal').modal('show');
       $('#ids').val(data.video.id);
       $('#videoTitle').val(data.video.video_name);
-      $('#videoDescription').val(data.video.description);
+      $('#videoDescriptions').val(data.video.description);
       $('#elink').val(data.video.video_path);
 
 

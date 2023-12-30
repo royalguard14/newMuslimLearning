@@ -130,7 +130,7 @@ class VideoeController extends Controller
         $newFileName = $desiredPart . '.pdf';
         if ($video) {
             $video->video_name = $request->videoTitle;
-            $video->description = $request->videoDescription;
+            $video->description = $request->videoDescriptions;
             $video->video_path = $request->elink;
             if ($request->hasFile('pdfUpload')) {
                 $publicPath = storage_path($parentDirectory);
