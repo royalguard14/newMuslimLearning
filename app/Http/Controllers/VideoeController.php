@@ -86,7 +86,7 @@ class VideoeController extends Controller
     $videoLibrary->save();
 
     $lastInsertedId = $videoLibrary->id;
-    $userId = auth()->id();
+    $userId = $loged->id;
     $videoDetail = new VideoDetails();
     $videoDetail->vidlib_id = $lastInsertedId;
     $videoDetail->uploader = $userId;
