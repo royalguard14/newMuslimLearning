@@ -22,14 +22,33 @@
 
 
 @section('body')
+<style type="text/css">
+    /* Custom styles for select2 */
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #007bff;
+    color: #fff;
+}
 
+/* Change the background color and text color for highlighted options */
+.select2-container--default .select2-results__option[aria-selected="true"] {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Change the background color and text color for available options */
+.select2-container--default .select2-results__option[aria-selected="false"] {
+    background-color: #fff;
+    color: #000;
+}
+
+</style>
 
 <div class="row">
 <section class="col-lg-5 connectedSortable">
    <div class="card">
         <div class="card-header" >
           <div>
-          <h3 class="card-title">Configuaration</h3>
+          <h3 class="card-title">Configuration</h3>
           </div>
 
         </div>
@@ -73,8 +92,11 @@
                 <td>{{ $playlist->name }}</td>
                 <td>
                     <button type="button" class="btn btn-primary" onclick="showModal({{ $playlist->id }})">
-                        Show Videos
+                        Videos List
                     </button>
+                </td>
+                                <td>
+                   <a href="{{ route('playlist.edit', $playlist->id) }}" class="btn btn-warning">Edit Playlist</a>
                 </td>
             </tr>
         @endforeach
@@ -105,8 +127,8 @@
                 </ul>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="addVideoToPlaylist()">Add Video</button>
-                <button type="button" class="btn btn-danger" onclick="deleteVideoFromPlaylist()">Delete Video</button>
+      <!--           <button type="button" class="btn btn-primary" onclick="addVideoToPlaylist()">Add Video</button>
+                <button type="button" class="btn btn-danger" onclick="deleteVideoFromPlaylist()">Delete Video</button> -->
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
@@ -173,48 +195,7 @@
 </script>
 
 
-<script>
-    function addVideoToPlaylist(videoId) {
-        var playlistId = getSelectedPlaylistId(); // Retrieve the selected playlist ID
 
-        $.ajax({
-            url: "{{ route('playlist.addVideo', '') }}" + "/" + playlistId,
-            type: 'POST',
-            data: { video_id: videoId }, // Send the video ID to add to the playlist
-            success: function(response) {
-                // Handle success (e.g., update the playlist display)
-                // For example, re-fetch the playlist videos after adding a video
-                showModal(playlistId); // Update the modal with the new video added
-            },
-            error: function(xhr) {
-                console.log(xhr.responseText); // Log any errors to the console
-            }
-        });
-    }
-
-    function deleteVideoFromPlaylist(videoId) {
-        var playlistId = getSelectedPlaylistId(); // Retrieve the selected playlist ID
-
-        $.ajax({
-            url: "{{ route('playlist.deleteVideo', '') }}" + "/" + playlistId,
-            type: 'DELETE',
-            data: { video_id: videoId }, // Send the video ID to remove from the playlist
-            success: function(response) {
-                // Handle success (e.g., update the playlist display)
-                // For example, re-fetch the playlist videos after deleting a video
-                showModal(playlistId); // Update the modal after deleting the video
-            },
-            error: function(xhr) {
-                console.log(xhr.responseText); // Log any errors to the console
-            }
-        });
-    }
-
-    // Function to retrieve the selected playlist ID (You need to implement this)
-    function getSelectedPlaylistId() {
-        // Your logic to get the selected playlist ID
-    }
-</script>
 
 
 

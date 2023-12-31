@@ -57,7 +57,7 @@ Route::get('gkmngdgaepo/ip', function(){
 //         }
 
 //         $pdf_path = $pdfPath;
-        
+
 //         // Update the pdf_note field for each entry
 //         $videoLibrary->pdf_note = $pdf_path;
 //         $videoLibrary->save();
@@ -107,10 +107,8 @@ Route::group(['middleware' => 'accesspage'], function () {
 
 
 		Route::get('playlist/show/{id?}',['as'=>'playlist.show','uses'=>'PlaylistController@show']);
-
-		Route::post('/playlist/{playlistId}/addVideo', [PlaylistController::class, 'addVideoToPlaylist'])->name('playlist.addVideo');
-Route::delete('/playlist/{playlistId}/deleteVideo', [PlaylistController::class, 'deleteVideoFromPlaylist'])->name('playlist.deleteVideo');
-
+		Route::get('/playlists/{id}/edit', 'PlaylistController@edit')->name('playlist.edit');
+		Route::put('/playlists/{id}', 'PlaylistController@update')->name('playlist.update');
 
 
 
@@ -120,13 +118,13 @@ Route::delete('/playlist/{playlistId}/deleteVideo', [PlaylistController::class, 
 		Route::get('video/edit/{id?}',['as'=>'video.show','uses'=>'VideoController@show']);
 		Route::post('video/del',['as'=>'video.destroy','uses'=>'VideoController@destroy']);
 		Route::post('video/update',['as'=>'video.edit','uses'=>'VideoController@update']);
-	
+
 		Route::get('videoe/edit/{id?}',['as'=>'videoe.show','uses'=>'VideoeController@show']);
 		Route::post('videoe/del',['as'=>'videoe.destroy','uses'=>'VideoeController@destroy']);
 		Route::post('videoe/update',['as'=>'videoe.edit','uses'=>'VideoeController@update']);
 
 	});
-	 
+
 	Route::group(['middleware' => 'maintenancepage'], function () {
 	});
 	

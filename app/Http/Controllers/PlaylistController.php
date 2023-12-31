@@ -99,10 +99,13 @@ class PlaylistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+public function edit($id)
+{
+    $playlist = Playlist::findOrFail($id);
+    $videos = Videos::all(); // Assuming Video model exists
+
+    return view('playlist.edit', compact('playlist', 'videos'));
+}
 
     /**
      * Update the specified resource in storage.
@@ -111,11 +114,19 @@ class PlaylistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+ public function update(Request $request, $id)
+{
+    $playlist = Playlist::findOrFail($id);
+    
+    $playlist->update([
+        'name' => $request->input('name'),
+        // Update other fields here as needed
+    ]);
 
+    $playlist->videos()->sync($request->input('video_ids', [])); // Sync associated videos
+    
+    return redirect()->route('playlist.index')->with('success', 'Playlist updated successfully');
+}
     /**
      * Remove the specified resource from storage.
      *
