@@ -64,10 +64,17 @@ use App\Models\VideoDetails;
      max-height: 400px; /* Set a max height for the card */
      overflow-y: auto; /* Enable vertical scrollbar when content exceeds the height */
    }
-   .glass-card:hover {
+/*   .glass-card:hover {
     transform: scale(1.02);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  }
+  }*/
+
+
+  .glass-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: none; /* Remove the blur effect on hover */
+}
   .playlist-title {
     font-size: 24px;
     text-align: center;
