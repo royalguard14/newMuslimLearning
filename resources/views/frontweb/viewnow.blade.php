@@ -86,28 +86,49 @@ footer {
   </header>
   <div id="fb-root"></div>
   <script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>
-  <p>{{ $playy[0]['src'] }}</p>
+ 
   <div class="container" style="margin-top: 10px; margin-bottom: 10px">
    <?php
    if(strpos($playy[0]['src'], 'youtube.com') !== false || strpos($playy[0]['src'], 'youtu.be') !== false) {
     ?>
     <div class="video-wrapper">
-      <iframe 
-      <?php 
-      $src = $playy[0]['src'];
-  // Check if $src contains "watch?v="
-      if (strpos($src, 'watch?v=') !== false) {
-    // Replace "watch?v=" with "embed/"
-        $src = str_replace('watch?v=', 'embed/', $src);
-      }
-      ?>
-      src="{{ $src }}" 
-      style="border:none;overflow:hidden; width: 100%; height: 100%;" 
-      frameborder="0" 
-      allowfullscreen="true" 
-      allow="autoplay; clipboard-write;  picture-in-picture; " 
-      allowFullScreen="true">
-    </iframe>
+<?php
+function getYoutubeEmbedUrl($url) {
+    // Check if the URL contains "youtu.be"
+    if (strpos($url, 'youtu.be') !== false) {
+        // Extract video ID
+        $videoId = explode('/', parse_url($url, PHP_URL_PATH))[1];
+        // Construct the embed URL
+        $embedUrl = 'https://www.youtube.com/embed/' . $videoId;
+        return $embedUrl;
+    } elseif (strpos($url, 'youtube.com/watch?v=') !== false) {
+        // Extract video ID from "youtube.com/watch?v=" format
+        $params = parse_url($url, PHP_URL_QUERY);
+        parse_str($params, $query);
+        $videoId = $query['v'];
+        // Construct the embed URL
+        $embedUrl = 'https://www.youtube.com/embed/' . $videoId;
+        return $embedUrl;
+    } else {
+        // If the URL format is not recognized, return the original URL
+        return $url;
+    }
+}
+
+$src = $playy[0]['src'];
+// Get the embed URL
+$embedSrc = getYoutubeEmbedUrl($src);
+?>
+
+<iframe 
+  src="{{ $embedSrc }}" 
+  style="border:none;overflow:hidden; width: 100%; height: 100%;" 
+  frameborder="0" 
+  allowfullscreen="true" 
+  allow="autoplay; clipboard-write;  picture-in-picture; " 
+  allowFullScreen="true">
+</iframe>
+
   </div>
   <?php
 } else {
