@@ -86,6 +86,7 @@ footer {
   </header>
   <div id="fb-root"></div>
   <script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>
+  <p>{{ $playy[0]['src'] }}</p>
   <div class="container" style="margin-top: 10px; margin-bottom: 10px">
    <?php
    if(strpos($playy[0]['src'], 'youtube.com') !== false || strpos($playy[0]['src'], 'youtu.be') !== false) {
